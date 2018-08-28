@@ -156,6 +156,14 @@ impl<'a> Hash for PackageIdStableHash<'a> {
     }
 }
 
+// Theseus does not use pathname as a seed
+impl<'a> PackageIdStableHash<'a> {
+    pub fn hash_no_src<S: hash::Hasher>(&self, state: &mut S) {
+        self.0.inner.name.hash(state);
+        self.0.inner.version.hash(state);
+    }
+}
+
 impl fmt::Display for PackageId {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         write!(f, "{} v{}", self.inner.name, self.inner.version)?;
