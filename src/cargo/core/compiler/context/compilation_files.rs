@@ -394,7 +394,7 @@ fn compute_metadata<'a, 'cfg>(
     unit.pkg
         .package_id()
         .stable_hash(cx.ws.root())
-        .hash_no_src(&mut hasher); // Theseus done use source patthname as a seed
+        .hash_no_src(&mut hasher); // Theseus does not use source pathname as a seed
 
     // Add package properties which map to environment variables
     // exposed by Cargo
